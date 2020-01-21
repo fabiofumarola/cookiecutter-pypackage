@@ -50,6 +50,9 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 {{ cookiecutter.project_slug }} tests
 
+format: ## format the code
+	autopep8 -ri --max-line-length 80 --aggressive .
+
 test: ## run tests quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
 	pytest
