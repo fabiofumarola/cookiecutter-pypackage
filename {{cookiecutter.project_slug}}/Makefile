@@ -75,12 +75,12 @@ coverage: ## check code coverage quickly with the default Python
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	cp README.rst docs/readme.rst
-	cp -rf images docs
+	cp -rf images docs 2>/dev/null || :
 	rm -f docs/{{ cookiecutter.project_slug }}.rst
 	rm -f docs/modules.rst
 	mkdir -p docs/tutorials
-	cp -rf notebooks/*.ipynb docs/tutorials
-	jupyter nbconvert docs/tutorials/*.ipynb --to rst
+	cp -rf notebooks/*.ipynb docs/tutorials 2>/dev/null || :
+	jupyter nbconvert docs/tutorials/*.ipynb --to rst 2>/dev/null || :
 	sphinx-apidoc -o docs/ {{ cookiecutter.project_slug }}
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
